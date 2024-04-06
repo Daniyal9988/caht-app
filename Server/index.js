@@ -8,6 +8,7 @@ const port= 4500 ;
 
 
 const users=[{}];
+console.log(users);
 
 app.use(cors());
 app.get("/",(req,res)=>{
@@ -25,7 +26,7 @@ io.on("connection",(socket)=>{
           users[socket.id]=user;
           console.log(`${user} has joined `);
           socket.broadcast.emit('userJoined',{user:"Admin",message:` ${users[socket.id]} has joined`});
-          socket.emit('welcome',{user:"Admin",message:`Welcome to the chat,${users[socket.id]} `})
+          socket.emit('welcome',{user:"Admin",message:`Welcome to the chat, ${users[socket.id]} `})
     })
 
     socket.on('message',({message,id})=>{
